@@ -71,6 +71,10 @@ def list_users(db: Session = Depends(get_db)):
 def create_user(email: str, full_name: str, password: str, role: str = "client", db: Session = Depends(get_db)):
     return crud.create_user(db, email, full_name, password, role)
 
+@app.get("/api/v1/health")
+def health_check():
+    return {"status": "healthy", "timestamp": datetime.utcnow()}
+
 # ============ FRONTEND ROUTES ============
 
 # Define all frontend routes explicitly BEFORE catch-all
